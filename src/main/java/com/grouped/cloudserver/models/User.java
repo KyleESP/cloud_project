@@ -15,6 +15,10 @@ public class User {
     private String birthDay;
     private Position position;
 
+    public User() {
+        this.position = new Position();
+    }
+
     @Id
     @Column(name = "id")
     public String getId() {

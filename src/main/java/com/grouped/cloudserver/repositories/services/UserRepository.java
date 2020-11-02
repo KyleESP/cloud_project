@@ -15,4 +15,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    @Override
+    User save(User newUser);
+
 }
