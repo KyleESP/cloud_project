@@ -19,7 +19,7 @@ public class UserService {
 
     public List<User> getUsers(){return userRepository.findAll();}
 
-    public User getUser(Integer id){return userRepository.findById(id).get();}
+    public User getUser(String id){return userRepository.findById(id).get();}
 
     public void addUser(User newUser){userRepository.save(newUser);}
 
@@ -29,12 +29,12 @@ public class UserService {
         }
     }
 
-    public void updateUser(int id, User user){
+    public void updateUser(String id, User user){
         if(userRepository.findById(id) == null){throw new ResourceNotFoundException();}
         userRepository.save(user);
     }
 
-    public void deleteUser(Integer idUser){
+    public void deleteUser(String idUser){
         if(userRepository.findById(idUser) == null){throw new ResourceNotFoundException();}
         userRepository.deleteById(idUser);
     }

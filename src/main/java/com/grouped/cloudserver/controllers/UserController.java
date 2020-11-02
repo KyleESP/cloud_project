@@ -17,7 +17,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{id}")
-    User getUserById(@PathVariable("id") Integer idUser){return userService.getUser(idUser); }
+    User getUserById(@PathVariable("id") String idUser){return userService.getUser(idUser); }
 
     @GetMapping()
     List<User> getUsers(){return userService.getUsers();}
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity updateUser(@PathVariable("id") Integer idUser, @RequestBody User updatedUser){
+    ResponseEntity updateUser(@PathVariable("id") String idUser, @RequestBody User updatedUser){
         userService.updateUser(idUser, updatedUser);
         return ResponseEntity.noContent().build();
     }
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity deleteUser(@PathVariable("id") Integer idUser){
+    ResponseEntity deleteUser(@PathVariable("id") String idUser){
         userService.deleteUser(idUser);
         return ResponseEntity.noContent().build();
     }
