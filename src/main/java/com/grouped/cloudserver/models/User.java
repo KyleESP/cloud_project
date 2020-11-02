@@ -15,6 +15,10 @@ public class User {
     private String birthDay;
     private Position position;
 
+    public User() {
+        this.position = new Position();
+    }
+
     @Id
     @Column(name = "id")
     public String getId() {
@@ -62,7 +66,6 @@ public class User {
     }
 
     public void setLat(double lat) {
-        if(this.position == null) {this.position = new Position();}
         this.position.setLat(lat);
     }
 
@@ -73,7 +76,6 @@ public class User {
     }
 
     public void setLon(double lon) {
-        if(this.position == null) {this.position = new Position();}
         this.position.setLon(lon);
     }
 }
