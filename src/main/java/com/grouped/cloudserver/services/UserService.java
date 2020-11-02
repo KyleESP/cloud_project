@@ -23,6 +23,12 @@ public class UserService {
 
     public void addUser(User newUser){userRepository.save(newUser);}
 
+    public void addUsers(List<User> newUsers){
+        for(User newUser : newUsers){
+            addUser(newUser);
+        }
+    }
+
     public void updateUser(int id, User user){
         if(userRepository.findById(id) == null){throw new ResourceNotFoundException();}
         userRepository.save(user);
@@ -31,6 +37,10 @@ public class UserService {
     public void deleteUser(Integer idUser){
         if(userRepository.findById(idUser) == null){throw new ResourceNotFoundException();}
         userRepository.deleteById(idUser);
+    }
+
+    public void deleteAllUsers(){
+        userRepository.deleteAll();
     }
 
 }
