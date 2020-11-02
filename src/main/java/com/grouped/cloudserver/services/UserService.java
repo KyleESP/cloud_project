@@ -1,5 +1,6 @@
 package com.grouped.cloudserver.services;
 
+import com.grouped.cloudserver.exceptions.ResourceNotFoundException;
 import com.grouped.cloudserver.models.User;
 import com.grouped.cloudserver.repositories.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,12 @@ public class UserService {
     public void addUser(User newUser){userRepository.save(newUser);}
 
     public void updateUser(int id, User user){
+        if(userRepository.findById(id) == null){throw new ResourceNotFoundException();}
         userRepository.save(user);
     }
 
     public void deleteUser(Integer idUser){
+        if(userRepository.findById(idUser) == null){throw new ResourceNotFoundException();}
         userRepository.deleteById(idUser);
     }
 
