@@ -1,21 +1,19 @@
 package com.grouped.cloudserver.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 
 @Entity
 @JsonSerialize(as=User.class)
-@Table(name = "user", schema = "codev", catalog = "")
+@Table(name = "user", schema = "cloud", catalog = "")
 public class User {
 
     private String id;
     private String firstName;
     private String lastName;
     private String birthDay;
-    private double lat;
-    private double lon;
+    private Position position;
 
     @Id
     @Column(name = "id")
@@ -60,20 +58,20 @@ public class User {
     @Basic
     @Column(nullable = false, name = "lat")
     public double getLat() {
-        return lat;
+        return this.position.getLat();
     }
 
     public void setLat(double lat) {
-        this.lat = lat;
+        this.position.setLat(lat);
     }
 
     @Basic
     @Column(nullable = false, name = "lon")
     public double getLon() {
-        return lon;
+        return this.position.getLon();
     }
 
     public void setLon(double lon) {
-        this.lon = lon;
+        this.position.setLon(lon);
     }
 }
