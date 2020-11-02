@@ -24,7 +24,7 @@ public class UserService {
 
     public User getUser(String id) {
         Optional<User> user = userRepository.findById(id);
-        if(!user.isPresent()) {
+        if(user.isEmpty()) {
             throw new ResourceNotFoundException();
         }
         return user.get();
