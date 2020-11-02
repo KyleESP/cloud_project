@@ -20,6 +20,14 @@ public class UserService {
 
     public User getUser(Integer id){return userRepository.findById(id).get();}
 
+    public void addUser(User newUser){userRepository.save(newUser);}
 
+    public void updateUser(int id, User user){
+        userRepository.save(user);
+    }
+
+    public void deleteUser(Integer idUser){
+        userRepository.deleteById(idUser);
+    }
 
 }
