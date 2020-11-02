@@ -3,20 +3,10 @@ package com.grouped.cloudserver.repositories.services;
 
 import com.grouped.cloudserver.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * User Repository
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
-
-
-    @Override
-    User save(User newUser); // todo: check if useful
-
-}
+public interface UserRepository extends JpaRepository<User, String> {}

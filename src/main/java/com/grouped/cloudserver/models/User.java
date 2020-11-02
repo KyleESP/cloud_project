@@ -1,5 +1,6 @@
 package com.grouped.cloudserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
@@ -59,6 +60,7 @@ public class User {
         this.birthDay = birthDay;
     }
 
+    @JsonIgnore
     @Basic
     @Column(nullable = false, name = "lat")
     public double getLat() {
@@ -69,6 +71,7 @@ public class User {
         this.position.setLat(lat);
     }
 
+    @JsonIgnore
     @Basic
     @Column(nullable = false, name = "lon")
     public double getLon() {
@@ -77,5 +80,14 @@ public class User {
 
     public void setLon(double lon) {
         this.position.setLon(lon);
+    }
+
+    @Transient
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

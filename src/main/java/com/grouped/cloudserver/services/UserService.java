@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -31,6 +32,7 @@ public class UserService {
     }
 
     public void addUser(User newUser) {
+        newUser.setId(UUID.randomUUID().toString());
         userRepository.save(newUser);
     }
 
