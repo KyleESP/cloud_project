@@ -62,6 +62,7 @@ public class User {
     }
 
     public void setLat(double lat) {
+        if(this.position == null) {this.position = new Position();}
         this.position.setLat(lat);
     }
 
@@ -72,6 +73,7 @@ public class User {
     }
 
     public void setLon(double lon) {
+        if(this.position == null) {this.position = new Position();}
         this.position.setLon(lon);
     }
 }
