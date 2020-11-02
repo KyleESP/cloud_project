@@ -17,6 +17,6 @@ public interface UserRepository extends JpaRepository<User, String> {
 
 
     @Override
-    User save(User newUser);
+    User save(User newUser); // todo: check if useful
 
 }

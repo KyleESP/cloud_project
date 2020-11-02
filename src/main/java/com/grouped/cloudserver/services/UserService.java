@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service("UserService")
+@Service
 public class UserService {
     private UserRepository userRepository;
 
@@ -17,11 +18,21 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers(){return userRepository.findAll();}
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
 
-    public User getUser(String id){return userRepository.findById(id).get();}
+    public User getUser(String id) {
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()) {
+            throw new ResourceNotFoundException();
+        }
+        return user.get();
+    }
 
-    public void addUser(User newUser){userRepository.save(newUser);}
+    public void addUser(User newUser) {
+        userRepository.save(newUser);
+    }
 
     public void addUsers(List<User> newUsers){
         for(User newUser : newUsers){
@@ -30,13 +41,13 @@ public class UserService {
     }
 
     public void updateUser(String id, User user){
-        if(userRepository.findById(id) == null){throw new ResourceNotFoundException();}
+        getUser(id); // to check that the user exists
         userRepository.save(user);
     }
 
-    public void deleteUser(String idUser){
-        if(userRepository.findById(idUser) == null){throw new ResourceNotFoundException();}
-        userRepository.deleteById(idUser);
+    public void deleteUser(String id){
+        getUser(id); // to check that the user exists
+        userRepository.deleteById(id);
     }
 
     public void deleteAllUsers(){
