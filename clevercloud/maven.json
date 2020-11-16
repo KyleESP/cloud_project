@@ -1,5 +1,8 @@
 {
   "deploy": {
-    "goal": "-Dtest.active=false -Dexec.mainClass=\"com.grouped.cloudserver.CloudServerApplication\" assembly:spring-boot-maven-plugin exec:java"
+    "goal": "deploy"
+  },
+  "build": {
+    "goal": "verify"
   }
 }
