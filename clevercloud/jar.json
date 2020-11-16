@@ -4,6 +4,6 @@
     "goal": "package"
   },
   "deploy": {
-    "jarName": "target/cloudServer-1.0-jar-with-dependencies.jar"
+    "jarName": "target/cloudserver-0.0.1-SNAPSHOT.jar"
   }
 }
