@@ -19,6 +19,6 @@ script:
 after_success:
   - "git remote add clever git+ssh://push-par-clevercloud-customers.services.clever-cloud.com/app_538a32ec-0a5c-4a36-bd54-f31a7e547289.git"
   - "git push -u clever main:master"
-  branches:
-    only:
-      - main
+branches:
+  only:
+    - main
