@@ -1,7 +1,7 @@
 {
   "build": {
     "type": "maven",
-    "goal": "package"
+    "goal": "package -DskipTests"
   },
   "deploy": {
     "jarName": "target/cloudserver-0.0.1-SNAPSHOT.jar"
