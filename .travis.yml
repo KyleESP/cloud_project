@@ -3,7 +3,6 @@ dist: xenial
 language: java
 
 jdk:
-  - openjdk8
   - openjdk11
 
 # Each job in Travis CI has several steps:
