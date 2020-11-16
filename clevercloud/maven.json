@@ -1,6 +1,6 @@
 {
   "deploy": {
-    "goal": "deploy"
+    "goal": "deploy -DaltDeploymentRepository=internal.repo::default::file:"
   },
   "build": {
     "goal": "verify"
