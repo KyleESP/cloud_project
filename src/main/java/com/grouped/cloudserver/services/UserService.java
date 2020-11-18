@@ -48,18 +48,24 @@ public class UserService {
 
     public void addUsers(List<User> newUsers){
         for(User newUser : newUsers){
-            addUser(newUser);
+           if(newUser.getId() == null || "".equals(newUser.getId())) {
+                newUser.setId(UUID.randomUUID().toString());
+            }
         }
+        userRepository.saveAll(newUsers);
     }
 
     public void updateUser(String id, User user){
-        getUser(id); // to check that the user exists
+        User oldUser = getUser(id);
         user.setId(id);
+        if(user.getFirstName() == null) user.setFirstName(oldUser.getFirstName());
+        if(user.getLastName() == null)  user.setLastName(oldUser.getLastName());
+        if(user.getBirthDay() == null)  user.setBirthDay(oldUser.getBirthDay());
+        if(user.getPosition() == null)  user.setPosition(oldUser.getPosition());
         userRepository.save(user);
     }
 
     public void deleteUser(String id){
-        getUser(id); // to check that the user exists
         userRepository.deleteById(id);
     }
 
