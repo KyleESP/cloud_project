@@ -5,6 +5,6 @@
   },
   "deploy": {
     "jarName": "target/cloudserver-0.0.1-SNAPSHOT.jar",
-    "goal": "deploy -Dspring.profiles.active=prod"
+    "goal": "deploy --spring.profiles.active=prod --spring.config.location=src/main/resources/prod.properties"
   }
 }
