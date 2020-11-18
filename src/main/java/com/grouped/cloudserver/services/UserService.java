@@ -26,6 +26,11 @@ public class UserService {
         return userRepository.findAll(PageRequest);
     }
 
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+
     public User getUser(String id) {
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty()) {
@@ -49,6 +54,7 @@ public class UserService {
 
     public void updateUser(String id, User user){
         getUser(id); // to check that the user exists
+        user.setId(id);
         userRepository.save(user);
     }
 

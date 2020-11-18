@@ -27,43 +27,44 @@ public class UserController {
     }
 
     @GetMapping(params = {"page"})
-    Page<User> getUsers(@RequestParam("page") int N) {
-        return userService.getUsers(PageRequest.of(N, 3));
+    List<User> getUsers(@RequestParam("page") int N) {
+        return userService.getUsers(PageRequest.of(N, 100)).getContent();
     }
 
     @GetMapping()
-    Page<User> getUsers() {
-        return userService.getUsers(PageRequest.of(0, 3));
+    List<User> getUsers() {
+        return userService.getUsers();
     }
 
     @PostMapping
     ResponseEntity<Object> newUser(@RequestBody User newUser){
         userService.addUser(newUser);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.created(null).body(newUser);
     }
 
     @PutMapping("/{id}")
     ResponseEntity<?> updateUser(@PathVariable("id") String idUser, @RequestBody User updatedUser){
         userService.updateUser(idUser, updatedUser);
+        //getUserById(updatedUser.getId());
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
-    ResponseEntity<?> updateAllUsers(@RequestBody List<User> updatedUsers){
+    ResponseEntity<List<User>> updateAllUsers(@RequestBody List<User> updatedUsers){
         deleteAllUsers();
         userService.addUsers(updatedUsers);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.created(null).body(updatedUsers);
     }
 
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteUser(@PathVariable("id") String idUser){
         userService.deleteUser(idUser);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
     ResponseEntity<?> deleteAllUsers(){
         userService.deleteAllUsers();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }
