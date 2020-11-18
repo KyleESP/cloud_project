@@ -3,14 +3,20 @@ package com.grouped.cloudserver.controllers;
 import com.grouped.cloudserver.models.User;
 import com.grouped.cloudserver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@EnableSpringDataWebSupport
 @RequestMapping("/user")
 public class UserController {
+
 
     @Autowired
     UserService userService;
@@ -20,9 +26,14 @@ public class UserController {
         return userService.getUser(idUser);
     }
 
+    @GetMapping(params = {"page"})
+    Page<User> getUsers(@RequestParam("page") int N) {
+        return userService.getUsers(PageRequest.of(N, 3));
+    }
+
     @GetMapping()
-    List<User> getUsers() {
-        return userService.getUsers();
+    Page<User> getUsers() {
+        return userService.getUsers(PageRequest.of(0, 3));
     }
 
     @PostMapping
@@ -39,7 +50,7 @@ public class UserController {
 
     @PutMapping
     ResponseEntity<?> updateAllUsers(@RequestBody List<User> updatedUsers){
-        userService.deleteAllUsers();
+        deleteAllUsers();
         userService.addUsers(updatedUsers);
         return ResponseEntity.noContent().build();
     }

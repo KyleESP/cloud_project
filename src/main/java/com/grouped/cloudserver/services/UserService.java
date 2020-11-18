@@ -4,6 +4,9 @@ import com.grouped.cloudserver.exceptions.ResourceNotFoundException;
 import com.grouped.cloudserver.models.User;
 import com.grouped.cloudserver.repositories.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +22,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public Page<User> getUsers(Pageable PageRequest) {
+        return userRepository.findAll(PageRequest);
     }
 
     public User getUser(String id) {
