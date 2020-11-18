@@ -40,18 +40,12 @@ public class UserService {
     }
 
     public void addUser(User newUser) {
-        if(newUser.getId() == null || "".equals(newUser.getId())) {
-            newUser.setId(UUID.randomUUID().toString());
-        }
+
         userRepository.save(newUser);
     }
 
     public void addUsers(List<User> newUsers){
-        for(User newUser : newUsers){
-           if(newUser.getId() == null || "".equals(newUser.getId())) {
-                newUser.setId(UUID.randomUUID().toString());
-            }
-        }
+
         userRepository.saveAll(newUsers);
     }
 

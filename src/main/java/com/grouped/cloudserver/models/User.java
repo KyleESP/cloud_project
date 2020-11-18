@@ -2,6 +2,7 @@ package com.grouped.cloudserver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -21,6 +22,8 @@ public class User {
     }
 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "id")
     public String getId() {
         return id;

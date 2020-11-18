@@ -2,6 +2,7 @@ package com.grouped.cloudserver.controllers;
 
 import com.grouped.cloudserver.models.User;
 import com.grouped.cloudserver.services.UserService;
+import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,13 +28,13 @@ public class UserController {
     }
 
     @GetMapping(params = {"page"})
-    List<User> getUsers(@RequestParam("page") int N) {
+    List<User> getUsers(@RequestParam("page") @Nullable Integer N) {
         return userService.getUsers(PageRequest.of(N, 100)).getContent();
     }
 
     @GetMapping()
     List<User> getUsers() {
-        return userService.getUsers();
+        return userService.getUsers(PageRequest.of(0, 100)).getContent();
     }
 
     @PostMapping
