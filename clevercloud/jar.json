@@ -1,10 +1,10 @@
 {
   "build": {
     "type": "maven",
-    "goal": "package -DskipTests -Dprod"
+    "goal": "package -DskipTests -Pprod"
   },
   "deploy": {
     "jarName": "target/cloudserver-0.0.1-SNAPSHOT.jar",
-    "goal": "deploy -Dprod"
+    "goal": "deploy -Pprod"
   }
 }
