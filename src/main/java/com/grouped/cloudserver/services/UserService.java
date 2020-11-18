@@ -32,7 +32,9 @@ public class UserService {
     }
 
     public void addUser(User newUser) {
-        newUser.setId(UUID.randomUUID().toString());
+        if(newUser.getId() == null || "".equals(newUser.getId())) {
+            newUser.setId(UUID.randomUUID().toString());
+        }
         userRepository.save(newUser);
     }
 
