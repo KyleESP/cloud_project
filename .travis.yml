@@ -1,26 +1,17 @@
 dist: xenial
-
 language: java
-
 jdk:
   - openjdk11
 
-# Each job in Travis CI has several steps:
-# https://docs.travis-ci.com/user/job-lifecycle/
-# The 'language: java' directive sets up sane defaults to test common java applications
-# We use the defaults for installing dependencies, compiling and testing maven applications
-# In our case it will be 'mvn install' followed by 'mvn test'
-
-before_script:
-  - echo -e "Host push-par-clevercloud-customers.services.clever-cloud.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+services:
+  - mysql
+  
+before_install:
+  - mysql -e 'CREATE DATABASE cloud;'
+  
 script:
-  - mvn package
-# This is to enable CodeCov's coverage
-# If a build is successful, the code is submitted for coverage analysis
-after_success:
-  - "git remote add clever git+ssh://push-par-clevercloud-customers.services.clever-cloud.com/app_538a32ec-0a5c-4a36-bd54-f31a7e547289.git"
-  - "git push -u clever main:master"
+  - mvn package -Ptest
+  
 branches:
   only:
     - main
