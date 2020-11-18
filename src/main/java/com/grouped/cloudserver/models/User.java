@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @JsonSerialize(as=User.class)
 @Table(name = "user", schema = "cloud", catalog = "")
-public class User {
+public class User { 
 
     private String id;
     private String firstName;
