@@ -18,6 +18,16 @@ public class User {
     private Position position;
 
     public User() {
+        this.firstName = "Unknown";
+        this.lastName = "Unknown";
+        this.birthDay = "Unknown";
+        this.position = new Position();
+    }
+
+    public User(String firstName, String lastName, String birthDay) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDay = birthDay;
         this.position = new Position();
     }
 
@@ -92,5 +102,16 @@ public class User {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof User))
+            return false;
+        User other = (User)o;
+        return this.id.equals(other.id) && this.firstName.equals(other.firstName) && this.lastName.equals(other.lastName)
+                && this.birthDay.equals(other.birthDay) && this.position.equals(other.position);
     }
 }

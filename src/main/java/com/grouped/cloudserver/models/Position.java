@@ -23,4 +23,14 @@ public class Position {
     public void setLon(double lon) {
         this.lon = lon;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Position))
+            return false;
+        Position other = (Position)o;
+        return this.lat == other.lat && this.lon == other.lon;
+    }
 }
