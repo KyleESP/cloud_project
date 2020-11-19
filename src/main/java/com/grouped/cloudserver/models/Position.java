@@ -8,6 +8,15 @@ public class Position {
     private double lat;
     private double lon;
 
+    public Position() {
+
+    }
+
+    public Position(double lat, double lon) {
+        this.lat = lat;
+        this.lon = lon;
+    }
+
     public double getLat() {
         return lat;
     }
@@ -22,15 +31,5 @@ public class Position {
 
     public void setLon(double lon) {
         this.lon = lon;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Position))
-            return false;
-        Position other = (Position)o;
-        return this.lat == other.lat && this.lon == other.lon;
     }
 }

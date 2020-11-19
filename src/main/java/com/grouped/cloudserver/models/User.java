@@ -18,17 +18,14 @@ public class User {
     private Position position;
 
     public User() {
-        this.firstName = "Unknown";
-        this.lastName = "Unknown";
-        this.birthDay = "Unknown";
-        this.position = new Position();
+
     }
 
-    public User(String firstName, String lastName, String birthDay) {
+    public User(String firstName, String lastName, String birthDay, Position position) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDay = birthDay;
-        this.position = new Position();
+        this.position = position;
     }
 
     @Id
@@ -81,6 +78,7 @@ public class User {
     }
 
     public void setLat(double lat) {
+        if (this.position == null) this.position = new Position();
         this.position.setLat(lat);
     }
 
@@ -92,6 +90,7 @@ public class User {
     }
 
     public void setLon(double lon) {
+        if (this.position == null) this.position = new Position();
         this.position.setLon(lon);
     }
 
@@ -100,18 +99,5 @@ public class User {
         return position;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof User))
-            return false;
-        User other = (User)o;
-        return this.id.equals(other.id) && this.firstName.equals(other.firstName) && this.lastName.equals(other.lastName)
-                && this.birthDay.equals(other.birthDay) && this.position.equals(other.position);
-    }
+    public void setPosition(Position position) { this.position = position; }
 }
