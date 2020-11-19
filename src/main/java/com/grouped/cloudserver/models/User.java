@@ -18,7 +18,14 @@ public class User {
     private Position position;
 
     public User() {
-        this.position = new Position();
+
+    }
+
+    public User(String firstName, String lastName, String birthDay, Position position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDay = birthDay;
+        this.position = position;
     }
 
     @Id
@@ -71,6 +78,7 @@ public class User {
     }
 
     public void setLat(double lat) {
+        if (this.position == null) this.position = new Position();
         this.position.setLat(lat);
     }
 
@@ -82,6 +90,7 @@ public class User {
     }
 
     public void setLon(double lon) {
+        if (this.position == null) this.position = new Position();
         this.position.setLon(lon);
     }
 
@@ -90,7 +99,5 @@ public class User {
         return position;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
+    public void setPosition(Position position) { this.position = position; }
 }
